@@ -44,6 +44,12 @@
     %}
 
     {% style %}
+      @font-face {
+      font-family: "KomiqueSans";
+      src: url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/komique-sans-display.woff2?v=1690796556') format("woff2"),
+      url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/komique-sans-display.woff?v=1690796556') format("woff"); }
+
+      
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
       {{ body_font_italic | font_face: font_display: 'swap' }}
@@ -82,12 +88,15 @@
       }
 
       :root {
-        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+         
+        /* --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}; */
+        --font-body-family: 'KomiqueSans';
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
         --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
 
-        --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+        /* --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }}; */
+        --font-heading-family: 'KomiqueSans';
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
 
