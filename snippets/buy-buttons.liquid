@@ -103,10 +103,8 @@
 
       // Перевірте значення data-inventory-quantity і змініть текст у кнопці, якщо дорівнює 1
       if (inventoryQuantity === '1') {
-        submitButton.textContent = 'One left';
-      } else {
-        // В іншому випадку, відновіть оригінальний текст кнопки
-        submitButton.textContent = 'Add to Cart'; // Замініть на відповідний оригінальний текст кнопки
+        setTimeout( submitButton.textContent = 'One left', 1000);
+       
       }
     }
 
