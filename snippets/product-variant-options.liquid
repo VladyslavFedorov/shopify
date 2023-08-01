@@ -65,7 +65,7 @@
     </label>
     
   {%- elsif block.settings.picker_type == 'dropdown' -%}
-          {%- assign variant = product.variants | where: 'title', value | first -%}
+         {%- assign variant = product.variants | where: 'option1', value | first -%}
           <option
             value="{{ value | escape }}"
             data-inventory-quantity="{{ variant.inventory_quantity }}"
@@ -81,22 +81,3 @@
           </option>
   {%- endif -%}
 {%- endfor -%}
-<script>
-  // Отримати елемент селекта
-  const selectElement = document.getElementById('Option-{{ section.id }}-{{ forloop.index0 }}');
-
-  // Отримати елемент для виведення Available Quantity
-  const availableQuantityElement = document.getElementById('available-quantity');
-
-  // Додати обробник подій на зміну значення селекта
-  selectElement.addEventListener('change', (event) => {
-    // Отримати обрану опцію
-    const selectedOption = event.target.selectedOptions[0];
-    
-    // Отримати значення кількості доступного товару з атрибуту data-available-quantity
-    const availableQuantity = selectedOption.dataset.availableQuantity;
-
-    // Вивести кількість доступного товару у відповідний елемент HTML
-    availableQuantityElement.textContent = `Available Quantity: ${availableQuantity}`;
-  });
-</script>
