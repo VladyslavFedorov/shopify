@@ -73,6 +73,7 @@
       {% if option_disabled -%}
         {{- 'products.product.value_unavailable' | t: option_value: value -}}
       {%- else -%}
+        2
         {{- value -}}
         {{- value.variant.inventory_quantity -}}
       {%- endif %}
