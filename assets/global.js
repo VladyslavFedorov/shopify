@@ -1067,7 +1067,7 @@ class VariantSelects extends HTMLElement {
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
     const addButtonText = productForm.querySelector('[name="add"] > span');
-    const inventoryInput = document.querySelector('.product-variant-inventory');
+    const inventoryInput = document.querySelector('.product-variant-inventory').value;
     if (!addButton) return;
 
     if (disable) {
