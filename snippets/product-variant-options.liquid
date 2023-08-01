@@ -47,8 +47,6 @@
 
   {%- if block.settings.picker_type == 'button' -%}
     <input
-      1
-      {{ value.inventory_quantity }}
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
       name="{{ option.name }}"
@@ -62,6 +60,7 @@
       {% endif %}
     >
     <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            {{ value.variant.inventory_quantity }}
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
