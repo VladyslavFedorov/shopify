@@ -87,10 +87,9 @@
             </span>
         
         {% for variant in product.variants %}
-  <p>Variant {{ forloop.index }}: {{ variant.title }}</p>
-  <p>Available: {{ variant.available }}</p>
-  <p>Quantity Available: {{ variant.inventory_quantity }}</p>
+{{ variant.inventory_quantity }}
 {% endfor %}
+        
         
             <div class="loading-overlay__spinner hidden">
               <svg
