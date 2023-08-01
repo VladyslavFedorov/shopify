@@ -1067,15 +1067,17 @@ class VariantSelects extends HTMLElement {
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
     const addButtonText = productForm.querySelector('[name="add"] > span');
+    const inventoryInput = document.querySelector('.product-variant-inventory');
     if (!addButton) return;
 
     if (disable) {
       addButton.setAttribute('disabled', 'disabled');
       if (text) addButtonText.textContent = text;
+    } else if (inventoryInput == 1) {
+      addButtonText.textContent = 'One left';
     } else {
       addButton.removeAttribute('disabled');
-      // addButtonText.textContent = window.variantStrings.addToCart;
-       addButtonText.textContent = '123'
+      addButtonText.textContent = window.variantStrings.addToCart;
     }
 
     if (!modifyClass) return;
