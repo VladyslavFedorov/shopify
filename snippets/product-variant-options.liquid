@@ -89,9 +89,16 @@
     return urlParams.get(name);
   }
 
-  // Отримайте variant_id з параметрів URL
-  const variantId = getURLParameter('variant');
+  // Функція, яка виконується при зміні URL (використовуйте onpopstate або onhashchange в залежності від того, як ви оновлюєте URL)
+  function handleURLChange() {
+    // Отримайте variant_id з параметрів URL
+    const variantId = getURLParameter('variant');
 
-  // Тепер ви можете використовувати змінну variantId у своєму коді
-  console.log('variant_id:', variantId);
+    // Тепер ви можете використовувати змінну variantId у своєму коді
+    console.log('variant_id:', variantId);
+  }
+
+  // Викликайте handleURLChange при завантаженні сторінки та при зміні URL
+  document.addEventListener('DOMContentLoaded', handleURLChange);
+  window.onpopstate = handleURLChange; // або window.onhashchange = handleURLChange; для використання хешу URL
 </script>
