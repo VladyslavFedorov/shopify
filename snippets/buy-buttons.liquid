@@ -94,29 +94,24 @@
               {%- endif -%}
             </span>
 
-            <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Отримайте елемент select
-    const selectElement = document.querySelector('.product-form__input select');
+<script>
+  // Отримайте елемент select
+  const selectElement = document.querySelector('.product-form__input select');
 
-    // Отримайте елемент з класом product-form__submit
-    const submitButton = document.querySelector('.product-form__submit span');
+  // Отримайте елемент input з класом .product-variant-inventory
+  const inventoryInput = document.querySelector('.product-variant-inventory');
 
-    // Функція для оновлення тексту у кнопці
-    function updateButtonText() {
-      // Отримайте значення атрибуту data-inventory-quantity вибраного елемента
-      const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
+  // Функція для оновлення значення input при зміні вибору у select
+  function updateInventoryInputValue() {
+    // Отримайте значення атрибуту data-inventory-quantity вибраного елемента
+    const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
 
-      // Перевірте значення data-inventory-quantity і змініть текст у кнопці, якщо дорівнює 1
-      if (inventoryQuantity === '1') {
-        setTimeout(function() {
-         submitButton.textContent = 'One left';
-        }, 1500);
-      }
-    }
-    // Викликайте функцію updateButtonText при зміні вибору у select
-    selectElement.addEventListener('change', updateButtonText);
-  });
+    // Запишіть значення data-inventory-quantity у відповідний input
+    inventoryInput.value = inventoryQuantity;
+  }
+
+  // Викликайте функцію updateInventoryInputValue при зміні вибору у select
+  selectElement.addEventListener('change', updateInventoryInputValue);
 </script>
             
         
