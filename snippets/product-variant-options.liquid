@@ -47,7 +47,6 @@
 
   {%- if block.settings.picker_type == 'button' -%}
     <input
-    {{ value.id }}
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
       name="{{ option.name }}"
@@ -68,6 +67,7 @@
   {%- elsif block.settings.picker_type == 'dropdown' -%}
          {%- assign variant = product.variants | where: 'option1', value | first -%}
           <option
+             {{ value.id }}
             value="{{ value | escape }}"
             data-inventory-quantity="{{ variant.inventory_quantity }}"
             {% if option.selected_value == value %}
