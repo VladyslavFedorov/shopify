@@ -98,7 +98,7 @@
     const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
 
     // Отримайте елемент з класом product-form__submit
-    const submitButton = document.querySelector('.product-form__submit');
+    const submitButton = document.querySelector('.product-form__submit span');
 
     // Перевірте значення data-inventory-quantity і змініть текст у кнопці, якщо дорівнює 1
     if (inventoryQuantity === '1') {
