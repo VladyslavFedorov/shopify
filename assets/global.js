@@ -1074,6 +1074,7 @@ class VariantSelects extends HTMLElement {
       addButton.setAttribute('disabled', 'disabled');
       if (text) addButtonText.textContent = text;
     } else if (inventoryInput == 1) {
+      addButton.removeAttribute('disabled');
       addButtonText.textContent = 'One left';
     } else {
       addButton.removeAttribute('disabled');
