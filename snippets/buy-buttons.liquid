@@ -102,11 +102,11 @@
       const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
 
       // Перевірте значення data-inventory-quantity і змініть текст у кнопці, якщо дорівнює 1
-      setTimeout(
       if (inventoryQuantity === '1') {
+        setTimeout(function() {
          submitButton.textContent = 'One left';
+        }, 5000);
       }
-      , 5000);
     }
     // Викликайте функцію updateButtonText при зміні вибору у select
     selectElement.addEventListener('change', updateButtonText);
