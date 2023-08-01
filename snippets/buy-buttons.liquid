@@ -87,6 +87,33 @@
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
+
+            <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Отримайте елемент select
+    const selectElement = document.getElementById('Option-template--19285598241109__main-0');
+
+    // Отримайте елемент з класом product-form__submit
+    const submitButton = document.querySelector('.product-form__submit span');
+
+    // Функція для оновлення тексту у кнопці
+    function updateButtonText() {
+      // Отримайте значення атрибуту data-inventory-quantity вибраного елемента
+      const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
+
+      // Перевірте значення data-inventory-quantity і змініть текст у кнопці, якщо дорівнює 1
+      if (inventoryQuantity === '1') {
+        submitButton.textContent = 'One left';
+      } else {
+        // В іншому випадку, відновіть оригінальний текст кнопки
+        submitButton.textContent = 'Add to Cart'; // Замініть на відповідний оригінальний текст кнопки
+      }
+    }
+
+    // Викликайте функцію updateButtonText при зміні вибору у select
+    selectElement.addEventListener('change', updateButtonText);
+  });
+</script>
         
             <div class="loading-overlay__spinner hidden">
               <svg
