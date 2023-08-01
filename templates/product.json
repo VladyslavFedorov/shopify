@@ -19,10 +19,18 @@
           "settings": {
           }
         },
+        "5760a6dc-ccc1-4c07-938e-31a778731387": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "dropdown"
           }
         },
         "quantity_selector": {
@@ -47,6 +55,7 @@
         "title",
         "c4ee557c-7c76-4766-8dca-d4dd7aa2be1a",
         "price",
+        "5760a6dc-ccc1-4c07-938e-31a778731387",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
