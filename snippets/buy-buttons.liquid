@@ -94,6 +94,26 @@
               {%- endif -%}
             </span>
 
+<script>
+  // Отримайте елемент select
+  const selectElement = document.querySelector('.product-form__input select');
+
+  // Отримайте елемент input з класом .product-variant-inventory
+  const inventoryInput = document.querySelector('.product-variant-inventory');
+
+  // Функція для оновлення значення input при зміні вибору у select
+  function updateInventoryInputValue() {
+    // Отримайте значення атрибуту data-inventory-quantity вибраного елемента
+    const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
+
+    // Запишіть значення data-inventory-quantity у відповідний input
+    inventoryInput.value = inventoryQuantity;
+  }
+
+  // Викликайте функцію updateInventoryInputValue при зміні вибору у select
+  selectElement.addEventListener('change', updateInventoryInputValue);
+</script>
+
             <div class="loading-overlay__spinner hidden">
               <svg
                 aria-hidden="true"
