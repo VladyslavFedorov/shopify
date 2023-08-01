@@ -81,3 +81,17 @@
           </option>
   {%- endif -%}
 {%- endfor -%}
+<!-- Додайте цей скрипт у тег <head> або перед закриваючим тегом </body> -->
+<script>
+  // Функція для отримання параметрів URL
+  function getURLParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  // Отримайте variant_id з параметрів URL
+  const variantId = getURLParameter('variant');
+
+  // Тепер ви можете використовувати змінну variantId у своєму коді
+  console.log('variant_id:', variantId);
+</script>
