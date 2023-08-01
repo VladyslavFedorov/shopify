@@ -1080,7 +1080,7 @@ class VariantSelects extends HTMLElement {
       addButton.removeAttribute('disabled');
       addButtonText.textContent = window.variantStrings.addToCart;
     }
-
+console.log(inventoryInput);
     if (!modifyClass) return;
   }
 
