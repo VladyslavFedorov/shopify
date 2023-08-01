@@ -82,11 +82,30 @@
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
               {%- elsif product.selected_or_first_available_variant.inventory_quantity == 1 -%}
-                залишився один
+                One left
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
+
+            <!-- Додайте цей скрипт після вашого HTML-коду -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Отримайте вибраний елемент select
+    const selectElement = document.getElementById('Option-template--19285598241109__main-0');
+
+    // Отримайте значення атрибуту data-inventory-quantity вибраного елемента
+    const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');
+
+    // Отримайте елемент з класом product-form__submit
+    const submitButton = document.querySelector('.product-form__submit');
+
+    // Перевірте значення data-inventory-quantity і змініть текст у кнопці, якщо дорівнює 1
+    if (inventoryQuantity === '1') {
+      submitButton.textContent = 'One left';
+    }
+  });
+</script>
         
             <div class="loading-overlay__spinner hidden">
               <svg
