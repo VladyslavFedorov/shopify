@@ -85,6 +85,13 @@
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
+        
+        {% for variant in product.variants %}
+  <p>Variant {{ forloop.index }}: {{ variant.title }}</p>
+  <p>Available: {{ variant.available }}</p>
+  <p>Quantity Available: {{ variant.inventory_quantity }}</p>
+{% endfor %}
+        
             <div class="loading-overlay__spinner hidden">
               <svg
                 aria-hidden="true"
