@@ -1068,6 +1068,7 @@ class VariantSelects extends HTMLElement {
     const addButton = productForm.querySelector('[name="add"]');
     const addButtonText = productForm.querySelector('[name="add"] > span');
     const inventoryInput = document.querySelector('.product-variant-inventory').value;
+    console.log(inventoryInput);
     if (!addButton) return;
 
     if (disable) {
@@ -1080,7 +1081,6 @@ class VariantSelects extends HTMLElement {
       addButton.removeAttribute('disabled');
       addButtonText.textContent = window.variantStrings.addToCart;
     }
-console.log(inventoryInput);
     if (!modifyClass) return;
   }
 
