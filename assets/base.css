@@ -2819,12 +2819,12 @@ details-disclosure > details {
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
   word-break: break-word;
+  text-transform: uppercase;
 }
 
 .badge_red {
  background: #FF3838; 
 }
-
 
 .gradient {
   background: rgb(var(--color-background));
