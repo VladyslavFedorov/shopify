@@ -301,6 +301,7 @@
 .card--standard > .card__content .card__information {
   padding-left: 0;
   padding-right: 0;
+  width: 100%;
 }
 
 .card--card.card--media .card__inner .card__information,
