@@ -348,7 +348,7 @@
     </div>
   </header>
   <div class="second_menu">
-        {%- liquid
+    {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
@@ -691,7 +691,19 @@
       "default": 20
     }
   ],
-  "blocks": [
+"blocks": [
+{
+"type": "link_list",
+"name": "t:sections.footer.blocks.link_list.name",
+"settings": [
+{
+"type": "link_list",
+"id": "second_menu",
+"label": "t:sections.footer.blocks.link_list.settings.menu.label",
+"info": "t:sections.footer.blocks.link_list.settings.menu.info"
+}
+]
+},
     {
       "type": "@app"
     }
