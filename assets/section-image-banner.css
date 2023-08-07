@@ -410,6 +410,8 @@
 
 .banner__heading {
   margin-bottom: 0;
+  text-shadow: 4px 4px 3px #000000;
+  text-transform: uppercase;
 }
 
 .banner__box .banner__heading + * {
