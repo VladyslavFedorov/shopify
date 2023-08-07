@@ -79,6 +79,14 @@
   margin-top: 1rem;
 }
 
+.collection_container {
+    background: #b6d6ff;
+    padding: 56px 50px 44px;
+    margin-bottom: 32px;
+    border-radius: 30px;
+    text-align: center;
+}
+
 .collection__description {
   font: 600 24px/27px Comfortaa; 
 }
