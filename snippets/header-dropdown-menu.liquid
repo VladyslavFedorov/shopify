@@ -28,9 +28,10 @@
               </summary>
               <ul
                 id="HeaderMenu-MenuList-{{ forloop.index }}"
-                class="header__submenu list-menu list-menu--disclosure gradient caption-large motion-reduce global-settings-popup"
+                class="header__submenu list-menu list-menu--disclosure gradient caption-large motion-reduce global-settings-popup image_box"
                 role="list"
                 tabindex="-1"
+                
               >
                 {%- for childlink in link.links -%}
                   <li>
@@ -103,3 +104,9 @@
     {%- endfor -%}
   </ul>
 </nav>
+<script>
+$('.list-menu li[data-image-url]').on('click', function () {
+let image_url = $(this).attr('data-image-url');
+$('.header__submenu.image_box').css('background', 'url(' + image_url + ') center/cover no-repeat');
+});
+</script>
