@@ -105,8 +105,12 @@
   </ul>
 </nav>
 <script>
-$('.list-menu li[data-image-url]').on('click', function () {
-let image_url = $(this).attr('data-image-url');
-$('.header__submenu.image_box').css('background', 'url(' + image_url + ') center/cover no-repeat');
+const listItems = document.querySelectorAll('.list-menu li[data-image-url]');
+listItems.forEach(function (listItem) {
+  listItem.addEventListener('click', function () {
+    let image_url = listItem.getAttribute('data-image-url');
+    let headerSubmenu = document.querySelector('.header__submenu.image_box');
+    headerSubmenu.style.background = 'url(' + image_url + ') center/cover no-repeat';
+  });
 });
 </script>
