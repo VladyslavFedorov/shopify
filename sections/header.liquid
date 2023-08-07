@@ -205,20 +205,15 @@
       {%- endif -%}
     {%- endif -%}
 
-                            {%- case block.type -%}
-                                {%- when 'link_list' -%}
-                                        <ul class="123">
-                                          dddd
-                                            {%- for link in block.settings.menu.links -%}
-                                                <li>
-                                                    <a href="{{ link.url }}"
-                                                       class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
-                                                        {{ link.title }}
-                                                    </a>
-                                                </li>
-                                            {%- endfor -%}
-                                        </ul>
-                            {%- endcase -%}
+{% for block in section.blocks %}
+  {% if block.type == 'link_list' %}
+    <ul class="menu">
+      {% for link in block.settings.menu.links %}
+        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
                             
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
