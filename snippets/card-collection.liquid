@@ -122,15 +122,19 @@
                 {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
           </h4>
-                      <a
+            <a
               {% if card_collection == blank %}
-                role="link" aria-disabled="true"
+                disabled
               {% else %}
                 href="{{ card_collection.url }}"
               {% endif %}
-              class="full-unstyled-link"
+              {% for product in collections[card_collection.title].products %}
+                {% else %}
+               disabled
+              {% endfor %}
+              class="button" 
             >
-                        {% for product in collections[card_collection.title].products %}
+{% for product in collections[card_collection.title].products %}
  Shop All
 {% else %}
 Coming soon
