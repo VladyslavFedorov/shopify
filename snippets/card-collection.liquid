@@ -116,7 +116,13 @@
       <div class="card__content">
         <div class="card__information">
           <h4 class="">
-            <a
+              {%- if card_collection.title != blank -%}
+                {{- card_collection.title | escape -}}
+              {%- else -%}
+                {{ 'onboarding.collection_title' | t }}
+              {%- endif -%}
+          </h4>
+                      <a
               {% if card_collection == blank %}
                 role="link" aria-disabled="true"
               {% else %}
@@ -124,16 +130,7 @@
               {% endif %}
               class="full-unstyled-link"
             >
-              {%- if card_collection.title != blank -%}
-                {{- card_collection.title | escape -}}
-              {%- else -%}
-                {{ 'onboarding.collection_title' | t }}
-              {%- endif -%}
-              {%- if card_collection.featured_image or card_collection.description == blank -%}
-                <span class="icon-wrap">{% render 'icon-arrow' %}</span>
-              {%- endif %}
-            </a>
-          </h4>
+                           </a>
           
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
