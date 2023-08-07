@@ -128,7 +128,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "Bestsellers",
-        "bg_color": "",
+        "bg_color": "#fff3b6",
         "heading_size": "h1",
         "description": "<p>Meet the newest Nikybotz<\/p>",
         "show_description": false,
