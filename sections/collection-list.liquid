@@ -34,7 +34,9 @@
         >
           {{ section.settings.title }}
         </h2>
-
+        <div class="description">
+        {{ section.settings.description }}
+        </div>
         {%- if section.settings.show_view_all and show_mobile_slider -%}
           <a
             href="{{ routes.collections_url }}"
