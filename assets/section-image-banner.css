@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.banner .subtitle {
+  text-transform: uppercase;
+}
+
 .banner__box {
   text-align: center;
 }
