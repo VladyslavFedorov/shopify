@@ -220,6 +220,7 @@
                                         </ul>
                                     {%- endif -%}
                             {%- endcase -%}
+                            
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
@@ -699,12 +700,12 @@
 "blocks": [
 {
 "type": "link_list",
-"name": "t:sections.footer.blocks.link_list.name",
+"name": "Menu",
 "settings": [
 {
 "type": "link_list",
 "id": "second_menu",
-"label": "t:sections.footer.blocks.link_list.settings.menu.label",
+"label": "menu",
 "info": "t:sections.footer.blocks.link_list.settings.menu.info"
 }
 ]
