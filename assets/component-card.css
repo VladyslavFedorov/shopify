@@ -183,6 +183,8 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
+  font: 700 20px/116% Comfortaa;
+  text-transform: capitalize;
 }
 
 .card__heading:last-child {
