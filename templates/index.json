@@ -113,6 +113,7 @@
       ],
       "settings": {
         "title": "Our Favorites",
+        "description": "Check Out",
         "heading_size": "h2",
         "image_ratio": "square",
         "columns_desktop": 4,
