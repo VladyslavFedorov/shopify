@@ -34,7 +34,8 @@
                 {%- for childlink in link.links -%}
                   <li>
                     {%- if childlink.links == blank -%}
-                      <a
+                      {% assign name_link_child = childlink.url | split: "/collections/" %}
+                      <a style="background: url('{{ collections[name_link[1]].featured_image | img_url: '200x' }}') center/cover no-repeat"
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
                         class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
