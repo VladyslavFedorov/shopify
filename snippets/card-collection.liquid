@@ -122,27 +122,12 @@
                 {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
           </h4>
-            <a
-              {% if card_collection == blank %}
-                disabled
-              {% else %}
-                href="{{ card_collection.url }}"
-              {% endif %}
               {% for product in collections[card_collection.title].products %}
-                {% else %}
-               disabled
+                <a  href="{{ card_collection.url }}" class="button">Shop All</a>
+              {% else %}
+                 <button class="button" disabled>Coming soon</button>
               {% endfor %}
-              class="button" 
-            >
-{% for product in collections[card_collection.title].products %}
- Shop All
-{% else %}
-Coming soon
-{% endfor %}
-    
-                       
-                           </a>
-          
+ 
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
