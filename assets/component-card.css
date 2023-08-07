@@ -123,11 +123,10 @@
 }
 
 .card__content {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) max-content minmax(0, 1fr);
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  flex-grow: 1;
 }
 
 .card__content--auto-margins {
