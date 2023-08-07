@@ -2810,18 +2810,21 @@ details-disclosure > details {
 
 .badge {
   border: 1px solid transparent;
-  border-radius: var(--badge-corner-radius);
+  border-radius: 132px;
+  font: 400 20px/110% KomiqueSans;
   display: inline-block;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  line-height: 1;
-  padding: 0.5rem 1.3rem 0.6rem 1.3rem;
+  padding: 13px 26px;
   text-align: center;
   background-color: rgb(var(--color-badge-background));
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
   word-break: break-word;
 }
+
+.badge_red {
+ background: #FF3838; 
+}
+
 
 .gradient {
   background: rgb(var(--color-background));
