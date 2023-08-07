@@ -45,8 +45,9 @@
 .card--standard .card__inner {
   position: relative;
   box-sizing: border-box;
-  border-radius: var(--border-radius);
-  border: var(--border-width) solid rgba(var(--color-foreground), var(--border-opacity));
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  overflow: hidden;
 }
 
 .card--card:after,
