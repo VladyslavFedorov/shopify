@@ -1233,6 +1233,7 @@ button.shopify-payment-button__button--unbranded {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
   border: 0;
   padding: 19px;
   width: 367px;
