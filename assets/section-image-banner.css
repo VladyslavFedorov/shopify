@@ -414,7 +414,9 @@
 
 .banner__heading {
   margin-bottom: 0;
-  text-shadow: 4px 4px 3px #000000;
+  -webkit-text-stroke: 5px #000000;
+  text-stroke: 5px #FFFFFF;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
