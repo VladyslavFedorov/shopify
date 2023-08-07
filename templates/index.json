@@ -52,6 +52,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "New Arrivals",
+        "bg_color": "#b6d6ff",
         "heading_size": "h2",
         "description": "<p>Meet the newest Nikybotz<\/p>",
         "show_description": false,
@@ -127,6 +128,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "Bestsellers",
+        "bg_color": "",
         "heading_size": "h1",
         "description": "<p>Meet the newest Nikybotz<\/p>",
         "show_description": false,
