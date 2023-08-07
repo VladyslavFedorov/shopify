@@ -8,7 +8,8 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
-      <li>
+       {% assign name_link = link.url | split: "/collections/" %}
+      <li data-image-url="{{ collections[name_link_child[1]].featured_image | img_url: '300x' }}">
         {%- if link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}">
@@ -34,8 +35,8 @@
                 {%- for childlink in link.links -%}
                   <li>
                     {%- if childlink.links == blank -%}
-                      {% assign name_link_child = childlink.url | split: "/collections/" %}
-                      <a data-image-url="{{ collections[name_link_child[1]].featured_image | img_url: '300x' }}"
+                     
+                      <a 
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
                         class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
