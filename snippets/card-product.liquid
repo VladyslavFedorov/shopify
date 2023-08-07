@@ -141,7 +141,7 @@
                 {{- 'products.product.on_sale' | t -}}
               </span>
               {%- elsif new_product == true -%}
-             <span class="badge badge_red">
+             <span class="badge badge_red color-{{ settings.sale_badge_color_scheme }}">
                 new
               </span>
             {%- endif -%}
