@@ -209,7 +209,7 @@
   {% if block.type == 'link_list' %}
     <ul class="menu">
       {% for link in block.settings.menu.links %}
-        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
       {% endfor %}
     </ul>
   {% endif %}
