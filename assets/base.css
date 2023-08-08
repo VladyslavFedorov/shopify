@@ -2681,6 +2681,7 @@ details[open] > .header__submenu {
   transition: 0.3s;
   position: relative;
 }
+
 .second_menu .header__menu-item:before {
   content: '';
   height: 5px;
@@ -2693,13 +2694,19 @@ details[open] > .header__submenu {
   background: #2079FF;
   opacity: 0;
 }
+
 .second_menu .header__menu-item:hover {
-  color: #2079FF;
+  color: #2079FF; 
+}
+
+.second_menu .header__menu-item:hover span {
   text-decoration: none;
 }
+
 .second_menu .header__menu-item:hover:before  {
   opacity: 1;
 }
+
 .second_menu .header__inline-menu {
       margin: 0 -24px;
 }
