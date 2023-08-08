@@ -2669,6 +2669,13 @@ details[open] > .header__submenu {
   margin-left: 0;
 }
 
+.second_menu {
+  background: #fff;
+}
+
+.header__menu-item {
+  color: #000;
+}
 @media screen and (min-width: 990px) {
   .header__inline-menu {
     display: block;
