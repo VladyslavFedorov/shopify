@@ -2683,13 +2683,12 @@ details[open] > .header__submenu {
 }
 .second_menu .header__menu-item:before {
   content: '';
-  width: 100%;
   height: 5px;
   border-radius: 5px;
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 24px;
+  right: 24px;
   transition: 0.3s;
   background: #2079FF;
   opacity: 0;
@@ -2699,7 +2698,7 @@ details[open] > .header__submenu {
   text-decoration: none;
 }
 .second_menu .header__menu-item:hover:before  {
-  
+  opacity: 1;
 }
 .second_menu .header__inline-menu {
       margin: 0 -24px;
