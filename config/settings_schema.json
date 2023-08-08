@@ -102,6 +102,16 @@
     ]
   },
   {
+    "name": "Color field",
+    "settings": [
+      {
+        "type": "textarea",
+        "label": "Color field",
+        "id": "additional_field"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.typography.name",
     "settings": [
       {

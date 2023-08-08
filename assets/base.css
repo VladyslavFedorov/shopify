@@ -1217,14 +1217,6 @@ button.shopify-payment-button__button--unbranded,
   position: relative;
 }
 
-.button,
-.shopify-challenge__button,
-.customer button,
-button.shopify-payment-button__button--unbranded {
-  min-width: calc(12rem + var(--buttons-border-width) * 2);
-  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
-}
-
 .shopify-payment-button__button--branded {
   z-index: auto;
 }
@@ -2107,7 +2099,7 @@ product-info .loading-overlay:not(.hidden) ~ *,
 .cart-count-bubble {
   position: absolute;
   background-color: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  color: #000;
   height: 1.7rem;
   width: 1.7rem;
   border-radius: 100%;
@@ -2696,7 +2688,7 @@ details[open] > .header__submenu {
 }
 
 .second_menu .header__menu-item:hover {
-  color: #2079FF; 
+  color: #2079FF;
 }
 
 .second_menu .header__menu-item:hover span {
@@ -2872,7 +2864,7 @@ details-disclosure > details {
 }
 
 .badge_red {
- background: #FF3838; 
+ background: #FF3838;
 }
 
 .gradient {

@@ -115,7 +115,7 @@
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
         <div class="card__information">
-          <h4 class="">
+          <h4 class="title">
               {%- if card_collection.title != blank -%}
                 {{- card_collection.title | escape -}}
               {%- else -%}
@@ -127,7 +127,7 @@
               {% else %}
                  <button class="button" disabled>Coming soon</button>
               {% endfor %}
- 
+
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}

@@ -207,14 +207,16 @@
 
 {% for block in section.blocks %}
   {% if block.type == 'link_list' %}
-    <ul class="menu">
+    <div class="header__inline-menu">
+    <ul class="menu list-menu list-menu--inline">
       {% for link in block.settings.menu.links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        <li><a class="header__menu-item list-menu__item link link--text focus-inset" href="{{ link.url }}">{{ link.title }}</a></li>
       {% endfor %}
     </ul>
+    </div>
   {% endif %}
 {% endfor %}
-                            
+
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">

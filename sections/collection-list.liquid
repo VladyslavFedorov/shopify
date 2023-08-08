@@ -1,6 +1,8 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -25,9 +27,9 @@
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div class="collection-list-wrapper isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
+      <div class="title-wrapper {% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
         <h2
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -50,9 +52,57 @@
       </div>
     {%- endunless -%}
 
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          <div id="Slide-{{ section.id }}-{{ forloop.index }}" class="swiper-slide"
+                  {{ block.shopify_attributes }}
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
+          >
+            {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+            {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+            {% render 'card-collection',
+                    card_collection: block.settings.collection,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    columns: columns,
+                    placeholder_image: placeholder_image
+            %}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+          breakpoints: {
+            // when window width is >= 320px
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 20
+            },
+            // when window width is >= 480px
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+              centeredSlides: true,
+              initialSlide: 1
+            },
+            // when window width is >= 640px
+            991: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+
+            },
+          }
+        });
+    </script>
+{% comment %}
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class=" collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -110,6 +160,7 @@
         </div>
       {%- endif -%}
     </slider-component>
+{% endcomment %}
 
     {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
       <div

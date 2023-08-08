@@ -48,12 +48,12 @@
       @font-face {
       font-family: "KomiqueSans";
       src: url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/komique-sans-display.woff2?v=1690796556') format("woff2"),
-      url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/komique-sans-display.woff?v=1690796556') format("woff"); 
+      url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/komique-sans-display.woff?v=1690796556') format("woff");
       }
       @font-face {
       font-family: "Comfortaa";
       src: url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/Comfortaa-Bold.woff2?v=1691389367') format("woff2"),
-      url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/Comfortaa-Bold.woff?v=1691389378') format("woff"); 
+      url('https://cdn.shopify.com/s/files/1/0766/1558/2037/files/Comfortaa-Bold.woff?v=1691389378') format("woff");
       }
 
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
@@ -94,7 +94,7 @@
       }
 
       :root {
-         
+
         /* --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}; */
         --font-body-family: 'Comfortaa';
         --font-body-style: {{ settings.type_body_font.style }};
@@ -250,6 +250,7 @@
         }
       }
     {% endstyle %}
+
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
