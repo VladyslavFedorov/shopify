@@ -2678,6 +2678,7 @@ details[open] > .header__submenu {
   padding: 24px;
   font: 400 15px/18px KomiqueSans;
   text-transform: uppercase;
+  transition: 0.3s;
 }
 .second_menu .header__menu-item:before {
   content: '';
@@ -2689,10 +2690,11 @@ details[open] > .header__submenu {
   left: 0;
   right: 0;
   transition: 0.3s;
+  background: #2079FF;
 }
 .second_menu .header__menu-item:hover {
   color: #2079FF;
-  border-color: #2079FF;
+  text-decoration: none;
 }
 .second_menu .header__inline-menu {
       margin: 0 -24px;
