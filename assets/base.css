@@ -2679,6 +2679,7 @@ details[open] > .header__submenu {
   font: 400 15px/18px KomiqueSans;
   text-transform: uppercase;
   transition: 0.3s;
+  position: relative;
 }
 .second_menu .header__menu-item:before {
   content: '';
@@ -2691,10 +2692,14 @@ details[open] > .header__submenu {
   right: 0;
   transition: 0.3s;
   background: #2079FF;
+  opacity: 0;
 }
 .second_menu .header__menu-item:hover {
   color: #2079FF;
   text-decoration: none;
+}
+.second_menu .header__menu-item:hover:before  {
+  
 }
 .second_menu .header__inline-menu {
       margin: 0 -24px;
