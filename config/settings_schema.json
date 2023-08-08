@@ -105,7 +105,7 @@
     "name": "Color field",
     "settings": [
       {
-        "type": "richtext",
+        "type": "textarea",
         "label": "Color field",
         "id": "additional_field"
       }
