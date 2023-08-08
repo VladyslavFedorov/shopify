@@ -2675,6 +2675,16 @@ details[open] > .header__submenu {
 
 .second_menu .header__menu-item {
   color: #000;
+  padding: 24px;
+  font: 400 15px/18px KomiqueSans;
+  border-bottom: 5px solid #fff;
+}
+.second_menu .header__menu-item:hover {
+  color: #2079FF;
+  border-color: #2079FF;
+}
+.second_menu .header__inline-menu {
+      margin: 0 -24px;
 }
 @media screen and (min-width: 990px) {
   .header__inline-menu {
