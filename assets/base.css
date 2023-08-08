@@ -2673,7 +2673,7 @@ details[open] > .header__submenu {
   background: #fff;
 }
 
-.header__menu-item {
+.second_menu .header__menu-item {
   color: #000;
 }
 @media screen and (min-width: 990px) {
