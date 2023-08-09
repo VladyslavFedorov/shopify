@@ -89,7 +89,7 @@
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75);
+        color: rgba(var(--color-foreground), 1);
         background-color: rgb(var(--color-background));
       }
 
@@ -222,7 +222,7 @@
       *,
       *::before,
       *::after {
-        box-sizing: inherit;
+        box-sizing: border-box;
       }
 
       html {

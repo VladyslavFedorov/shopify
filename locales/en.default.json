@@ -191,8 +191,8 @@
         "other": "{{ product_count }} of {{ count }} products"
       },
       "product_count_simple": {
-        "one": "{{ count }} product",
-        "other": "{{ count }} products"
+        "one": "{{ count }} product found",
+        "other": "{{ count }} products found"
       },
       "reset": "Reset",
       "sort_button": "Sort",
