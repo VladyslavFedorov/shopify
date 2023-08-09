@@ -15,14 +15,22 @@
         "16663708-1881-46d5-b243-c2ea5a6ff2c5": {
           "type": "text",
           "settings": {
-            "heading": "Heading",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+            "heading": "",
+            "subtext": "<p>767 South Alameda Street, #180,Los Angeles, CA, 90021,United States<\/p>"
+          }
+        },
+        "0342eadf-25c4-4110-a017-f6cfb91e91ec": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "subtext": "<p>E:<a href=\"mailto:hello@nikybotz.com\" target=\"_blank\">hello@nikybotz.com<\/a><br\/>IG:@nikybotz<\/p>"
           }
         }
       },
       "block_order": [
         "14a25979-3aa7-48aa-9297-5eea67d994d5",
-        "16663708-1881-46d5-b243-c2ea5a6ff2c5"
+        "16663708-1881-46d5-b243-c2ea5a6ff2c5",
+        "0342eadf-25c4-4110-a017-f6cfb91e91ec"
       ],
       "settings": {
         "color_scheme": "inverse",
