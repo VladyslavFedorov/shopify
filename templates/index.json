@@ -103,13 +103,20 @@
           "settings": {
             "collection": "accessories"
           }
+        },
+        "b23db383-349f-4979-a113-8c43e4068291": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "feeding"
+          }
         }
       },
       "block_order": [
         "template--19285598273877__94afd740-7564-44b4-9ccb-181299c8b8f9-featured_collection-1",
         "template--19285598273877__94afd740-7564-44b4-9ccb-181299c8b8f9-featured_collection-2",
         "template--19285598273877__94afd740-7564-44b4-9ccb-181299c8b8f9-featured_collection-3",
-        "39e61f62-f8e8-4a98-ba41-c397ac6bc360"
+        "39e61f62-f8e8-4a98-ba41-c397ac6bc360",
+        "b23db383-349f-4979-a113-8c43e4068291"
       ],
       "settings": {
         "title": "Our Favorites",

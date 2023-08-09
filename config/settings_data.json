@@ -1,7 +1,8 @@
 {
   "current": {
     "logo": "shopify:\/\/shop_images\/logo_white.png",
-    "logo_width": 180,
+    "logo_width": 185,
+    "favicon": "shopify:\/\/shop_images\/Screenshot_2023-05-24_at_11.50_1_Traced.png",
     "additional_field": "black: #000;\nWhite: #fff;\nYellow: #FFDD59;\ngrey: #B7B7B7;",
     "type_header_font": "assistant_n4",
     "heading_scale": 100,
