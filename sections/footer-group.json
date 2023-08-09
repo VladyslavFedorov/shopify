@@ -11,10 +11,18 @@
             "heading": "",
             "menu": "footer"
           }
+        },
+        "16663708-1881-46d5-b243-c2ea5a6ff2c5": {
+          "type": "text",
+          "settings": {
+            "heading": "Heading",
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+          }
         }
       },
       "block_order": [
-        "14a25979-3aa7-48aa-9297-5eea67d994d5"
+        "14a25979-3aa7-48aa-9297-5eea67d994d5",
+        "16663708-1881-46d5-b243-c2ea5a6ff2c5"
       ],
       "settings": {
         "color_scheme": "inverse",
