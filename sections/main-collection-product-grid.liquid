@@ -35,7 +35,7 @@
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide no-js-hidden">
         <form class="facets-vertical-form" id="FacetSortForm">
           <div class="product-count-vertical light" role="status">
-            <h2 class="product-count__text text-body">
+            <div class="product-count__text">
               <span id="ProductCountDesktop">
                 {%- if collection.results_count -%}
                   {{
@@ -51,7 +51,7 @@
                   }}
                 {%- endif -%}
               </span>
-            </h2>
+            </div>
             <div class="loading-overlay__spinner">
               <svg
                       aria-hidden="true"
@@ -88,7 +88,9 @@
                     </option>
                   {%- endfor -%}
                 </select>
-                {% render 'icon-caret' %}
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 13L16.5 20L24 13" stroke="#2079FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
             <noscript>

@@ -264,6 +264,7 @@ h1,
   h1,
   .h1 {
     font-size: 80px;
+    line-height: 116%;
   }
 }
 h2,
@@ -379,17 +380,17 @@ table:not([class]) th {
   padding: 1em;
   border: 0.1rem solid rgba(var(--color-foreground), 0.2);
 }
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 991px) {
   .small-hide {
     display: none !important;
   }
 }
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 992px) {
   .medium-hide {
     display: none !important;
   }
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 992px) {
   .large-up-hide {
     display: none !important;
   }
@@ -599,11 +600,6 @@ summary::-webkit-details-marker {
 *:focus {
   outline: 0;
   box-shadow: none;
-}
-*:focus-visible {
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  outline-offset: 0.3rem;
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
 /* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
 .focused,
@@ -2210,8 +2206,8 @@ details[open] > .header__submenu {
 }
 .second_menu .header__menu-item {
   color: #000;
-  padding: 24px;
-  font: 400 15px/18px KomiqueSans;
+  padding: 17px 24px;
+  font: 400 15px/32px KomiqueSans;
   text-transform: uppercase;
   transition: 0.3s;
   position: relative;
@@ -2256,6 +2252,7 @@ details[open] .header__menu-item:before,
   padding: 16px;
   display: flex;
   min-width: 445px;
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.10);
 }
 .second_menu .header__submenu .list-menu {
   padding: 8px 20px 0 4px;
