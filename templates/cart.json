@@ -25,6 +25,7 @@
         "subtotal",
         "buttons"
       ],
+      "disabled": true,
       "settings": {
       }
     }
