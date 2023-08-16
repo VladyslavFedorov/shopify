@@ -9,6 +9,9 @@
     margin-bottom: 1.5rem;
   }
 }
+.related-products {
+  display: block;
+}
 .collection .loading-overlay {
   top: 0;
   right: 0;
@@ -66,6 +69,7 @@
   margin-top: 1rem;
 }
 .collection_container {
+  display: block;
   background: #b6d6ff;
   padding: 56px 50px 44px;
   margin-bottom: 32px;
