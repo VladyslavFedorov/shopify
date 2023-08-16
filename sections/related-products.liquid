@@ -27,7 +27,7 @@
     >
         {% if recommendations.performed and recommendations.products_count > 0 %}
             <div class="collection">
-                <div class="collection_container page-width ">
+                <div class="collection_container page-width" style="background:{{ section.settings.bg_color }};">
                     <div class="collection__title title-wrapper title-wrapper--no-top-margin">
                         <h2 class="title related-products__heading {{ section.settings.heading_size }}">
                             {{ section.settings.heading }}

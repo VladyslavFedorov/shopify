@@ -2206,6 +2206,9 @@ details[open] .header__menu-item span,
 .second_menu .header__menu-item:hover {
   color: #2079FF;
 }
+details[open] .header__menu-item  svg {
+  transform: rotate(180deg);
+}
 .second_menu .header__active-menu-item span,
 .second_menu .header__menu-item:hover span {
   text-decoration: none;
@@ -2214,6 +2217,11 @@ details[open] .header__menu-item:before,
 .second_menu .header__active-menu-item:before,
 .second_menu .header__menu-item:hover:before {
   opacity: 1;
+}
+details[open] .header__menu-item svg path,
+.second_menu .header__active-menu-item svg path,
+.second_menu .header__menu-item:hover svg path {
+  stroke: #2079FF;
 }
 .second_menu .header__inline-menu {
   margin: 0 -24px;

@@ -93,9 +93,8 @@
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
-
 <script>
-  const selectElement = document.querySelector('.product-form__input select');
+  const selectElement = document.querySelector('.product-form__input input');
   const inventoryInput = document.querySelector('.product-variant-inventory');
   function updateInventoryInputValue() {
     const inventoryQuantity = selectElement.options[selectElement.selectedIndex].getAttribute('data-inventory-quantity');

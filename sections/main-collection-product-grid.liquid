@@ -399,3 +399,22 @@
   ]
 }
 {% endschema %}
+
+{% if product.metafields.my_fields.preis_auf_anfrage.value == true %}
+  <a
+          class="button--beratung product-form__submit button request_special"
+          {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+  >
+                          <span>
+                            {%- if product.selected_or_first_available_variant.available == false -%}
+                              {{ 'products.product.sold_out' | t }}
+                            {%- elsif product.selected_or_first_available_variant.inventory_quantity == 1 -%}
+                              Jetzt 1 verfügbar
+                            {%- else -%}
+                              {{ 'products.product.add_to_cart' | t }}
+                            {%- endif -%}
+                          </span>
+  </a>
+{% endif %}
+
+
