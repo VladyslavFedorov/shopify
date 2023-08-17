@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "9952b8c5-4250-4dec-b8a1-5b3a58a246b4": {
+      "type": "image-compare",
+      "settings": {
+        "title": "",
+        "before_image": "shopify:\/\/shop_images\/before-cgi.jpg",
+        "after_image": "shopify:\/\/shop_images\/after-cgi.jpg"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "9952b8c5-4250-4dec-b8a1-5b3a58a246b4"
+  ]
+}
