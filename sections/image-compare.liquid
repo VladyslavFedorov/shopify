@@ -1,6 +1,36 @@
 {{ 'image-compare-viewer.min.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'image-compare-viewer.min.js' | asset_url }}" defer="defer"></script>
+
+
+
+    <div id="image-compare">
+      <div class="image-compare">
+        <img
+          src="https://image-compare-viewer.netlify.app/public/before-cgi.jpg"
+          alt=""
+        />
+        <img
+          src="https://image-compare-viewer.netlify.app/public/after-cgi.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+
+        <script>
+
+      const element = document.getElementById("image-compare");
+
+      const viewer = new ImageCompare(element,{
+        addCircle: true,
+        startingPoint: 75,
+        smoothing: true,
+        smoothingAmount: 100,
+        addCircleBlur: true,
+        // hoverStart: true,
+      }).mount();
+
+    </script>
 {% schema %}
   {
     "name": "Image compare",
