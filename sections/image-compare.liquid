@@ -7,11 +7,11 @@
     <div class="page-width" id="image-compare">
       <div class="image-compare">
         <img
-          src="https://image-compare-viewer.netlify.app/public/before-cgi.jpg"
+          src="{{ section.settings.before_image |img_url: '1200x' }}"
           alt=""
         />
         <img
-          src="https://image-compare-viewer.netlify.app/public/after-cgi.jpg"
+          src="{{ section.settings.after_image |img_url: '1200x' }}"
           alt=""
         />
       </div>
