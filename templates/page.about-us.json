@@ -10,7 +10,9 @@
     "9952b8c5-4250-4dec-b8a1-5b3a58a246b4": {
       "type": "image-compare",
       "settings": {
-        "title": ""
+        "title": "",
+        "before_image": "shopify:\/\/shop_images\/before-cgi.jpg",
+        "after_image": "shopify:\/\/shop_images\/after-cgi.jpg"
       }
     }
   },
