@@ -160,12 +160,32 @@
         "padding_top": 40,
         "padding_bottom": 32
       }
+    },
+    "69966e70-dbe1-4908-b451-bc0f25d32897": {
+      "type": "shoppable-image",
+      "blocks": {
+        "2cb4ce6c-7393-4c1c-89e0-4891a705474f": {
+          "type": "column",
+          "settings": {
+            "product": "bear-pillow",
+            "horizontal_position": 28,
+            "vertical_position": 22
+          }
+        }
+      },
+      "block_order": [
+        "2cb4ce6c-7393-4c1c-89e0-4891a705474f"
+      ],
+      "settings": {
+        "title": ""
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "94afd740-7564-44b4-9ccb-181299c8b8f9",
-    "4a2fffe4-a989-4e97-b8af-5f68eef35a6a"
+    "4a2fffe4-a989-4e97-b8af-5f68eef35a6a",
+    "69966e70-dbe1-4908-b451-bc0f25d32897"
   ]
 }
