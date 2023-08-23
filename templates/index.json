@@ -160,76 +160,12 @@
         "padding_top": 40,
         "padding_bottom": 32
       }
-    },
-    "69966e70-dbe1-4908-b451-bc0f25d32897": {
-      "type": "shoppable-image",
-      "blocks": {
-        "2cb4ce6c-7393-4c1c-89e0-4891a705474f": {
-          "type": "column",
-          "settings": {
-            "product": "bear-pillow",
-            "horizontal_position": 28,
-            "vertical_position": 22
-          }
-        }
-      },
-      "block_order": [
-        "2cb4ce6c-7393-4c1c-89e0-4891a705474f"
-      ],
-      "settings": {
-        "title": "SHOPPABLE IMAGE",
-        "image": "shopify:\/\/shop_images\/nursery-interior-design.jpg"
-      }
-    },
-    "1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6": {
-      "type": "modal",
-      "blocks": {
-        "template--19285598273877__1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6-column-1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "template--19285598273877__1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6-column-2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "template--19285598273877__1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6-column-3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "template--19285598273877__1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6-column-1",
-        "template--19285598273877__1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6-column-2",
-        "template--19285598273877__1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6-column-3"
-      ],
-      "settings": {
-        "title": "Multicolumn",
-        "image_ratio": "adapt",
-        "columns_desktop": 3
-      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "94afd740-7564-44b4-9ccb-181299c8b8f9",
-    "4a2fffe4-a989-4e97-b8af-5f68eef35a6a",
-    "69966e70-dbe1-4908-b451-bc0f25d32897",
-    "1e3d20fd-63b8-48da-a0f3-eb6eff9ec0d6"
+    "4a2fffe4-a989-4e97-b8af-5f68eef35a6a"
   ]
 }

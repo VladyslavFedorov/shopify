@@ -5,15 +5,15 @@
     "587a763a-8f56-4435-a799-ea622ac590a2": {
       "type": "modal",
       "blocks": {
-        "8c429081-ee2d-4ca3-ad8f-509bed1c1cfe": {
-          "type": "image",
+        "a624caeb-c7b5-4a54-a6e9-17d0e397b64e": {
+          "type": "product",
           "settings": {
-            "image": "shopify:\/\/shop_images\/nursery-interior-design.jpg"
+            "product": "bear-pillow"
           }
         }
       },
       "block_order": [
-        "8c429081-ee2d-4ca3-ad8f-509bed1c1cfe"
+        "a624caeb-c7b5-4a54-a6e9-17d0e397b64e"
       ],
       "settings": {
         "modal_width": 800,
