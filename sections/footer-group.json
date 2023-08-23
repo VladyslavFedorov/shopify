@@ -5,24 +5,19 @@
     "587a763a-8f56-4435-a799-ea622ac590a2": {
       "type": "modal",
       "blocks": {
-        "0396d4ee-9e85-4662-b687-281b58df134b": {
-          "type": "message",
+        "8c429081-ee2d-4ca3-ad8f-509bed1c1cfe": {
+          "type": "image",
           "settings": {
-            "background_image": "shopify:\/\/shop_images\/nursery-interior-design.jpg",
-            "title": "Heading",
-            "text": "<p>Description<\/p>",
-            "link_label": "link",
-            "link": "shopify:\/\/pages\/about-us"
+            "image": "shopify:\/\/shop_images\/nursery-interior-design.jpg"
           }
         }
       },
       "block_order": [
-        "0396d4ee-9e85-4662-b687-281b58df134b"
+        "8c429081-ee2d-4ca3-ad8f-509bed1c1cfe"
       ],
       "settings": {
-        "title": "Multicolumn",
-        "image_ratio": "adapt",
-        "columns_desktop": 3
+        "modal_width": 800,
+        "appearance_options": "when_load"
       }
     },
     "footer": {
