@@ -42,9 +42,6 @@
     width: 100%;
     padding: 40px 20px;
   }
-  #settings_modal_width {
-  display: none;
-}
 </style>
 
 <div id="custom_modal" class="modal {% if section.settings.appearance_options == "when_load" %}when_load" {% endif %}>
@@ -275,22 +272,4 @@
         }
     });
     {% endif %}
-</script>
-
-<script>
-$(document).ready(function() {
-  var appearanceOptions = $('#settings_appearance_options');
-  var modalWidthGroup = $('#settings_modal_width').closest('.setting-group');
-
-  function toggleModalWidth() {
-    if (appearanceOptions.val() === 'when_load') {
-      modalWidthGroup.show();
-    } else {
-      modalWidthGroup.hide();
-    }
-  }
-
-  appearanceOptions.on('change', toggleModalWidth);
-  toggleModalWidth(); // Визначити видимість при завантаженні сторінки
-});
 </script>
