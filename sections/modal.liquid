@@ -274,3 +274,20 @@
     {% endif %}
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const appearanceOptions = document.getElementById("settings_appearance_options");
+    const modalWidthGroup = document.getElementById("settings_modal_width").parentNode;
+
+    function toggleModalWidth() {
+      if (appearanceOptions.value === "when_load") {
+        modalWidthGroup.style.display = "block";
+      } else {
+        modalWidthGroup.style.display = "none";
+      }
+    }
+
+    appearanceOptions.addEventListener("change", toggleModalWidth);
+    toggleModalWidth(); // Визначити видимість при завантаженні сторінки
+  });
+</script>
