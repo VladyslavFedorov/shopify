@@ -2,6 +2,29 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "587a763a-8f56-4435-a799-ea622ac590a2": {
+      "type": "modal",
+      "blocks": {
+        "0396d4ee-9e85-4662-b687-281b58df134b": {
+          "type": "message",
+          "settings": {
+            "background_image": "shopify:\/\/shop_images\/nursery-interior-design.jpg",
+            "title": "Heading",
+            "text": "<p>Description<\/p>",
+            "link_label": "link",
+            "link": "shopify:\/\/pages\/about-us"
+          }
+        }
+      },
+      "block_order": [
+        "0396d4ee-9e85-4662-b687-281b58df134b"
+      ],
+      "settings": {
+        "title": "Multicolumn",
+        "image_ratio": "adapt",
+        "columns_desktop": 3
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -50,6 +73,7 @@
     }
   },
   "order": [
+    "587a763a-8f56-4435-a799-ea622ac590a2",
     "footer"
   ]
 }
