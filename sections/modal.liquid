@@ -1,157 +1,276 @@
 <style>
-  /* Сховати модальне вікно за замовчуванням */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 60%;
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+  .modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .modal.show {
+    opacity: 1;
+    z-index: 99;
+  }
+  .modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10% auto;
+    border: 1px solid #fff;
+    width: 60%;
+    max-width: 100%;
+    text-align: center;
+    position: relative;
+    display: flex;
+  }
+  .close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .modal_message {
+    width: 100%;
+    padding: 40px 20px;
+  }
 </style>
 
-<div id="custom_modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Це модальне вікно!</p>
-  </div>
+<div id="custom_modal" class="modal {% if section.settings.appearance_options == "when_load" %}when_load" {% endif %}>
+    <div class="modal-content" style="width: {{ section.settings.modal_width }}px;">
+        <span class="close">&times;</span>
+        {%- for block in section.blocks -%}
+            {% case block.type %}
+                {% when 'product' %}
+                    <div class="grid__item product__media-wrapper">
+                        <media-gallery
+                                id="MediaGallery-{{ section.id }}"
+                                role="region"
+                                aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
+                                data-desktop-layout="stacked"
+                        >
+                            <div
+                                    id="GalleryViewer-{{ section.id }}"
+                                    class="product__media-list{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+                            >
+                                {%- if section.settings.product != blank -%}
+                                    {%- if product.selected_or_first_available_variant.featured_media != null -%}
+                                        {%- assign media = product.selected_or_first_available_variant.featured_media -%}
+                                        <div class="product__media-item" data-media-id="{{ section.id }}-{{ media.id }}">
+                                            {% render 'product-thumbnail',
+                                                    media: media,
+                                                    position: 'featured',
+                                                    loop: section.settings.enable_video_looping,
+                                                    modal_id: section.id,
+                                                    xr_button: false,
+                                                    media_width: media_width,
+                                                    media_fit: section.settings.media_fit,
+                                                    constrain_to_viewport: section.settings.constrain_to_viewport
+                                            %}
+                                        </div>
+                                    {%- endif -%}
+                                    {%- liquid
+                                        assign media_to_render = product.featured_media.id
+                                        for variant in product.variants
+                                            assign media_to_render = media_to_render | append: variant.featured_media.id | append: ' '
+                                        endfor
+                                    -%}
+                                    {%- for media in product.media -%}
+                                        {%- if media_to_render contains media.id
+                                        and media.id != product.selected_or_first_available_variant.featured_media.id
+                                        -%}
+                                            <div class="product__media-item" data-media-id="{{ section.id }}-{{ media.id }}">
+                                                {% render 'product-thumbnail',
+                                                        media: media,
+                                                        position: forloop.index,
+                                                        loop: section.settings.enable_video_looping,
+                                                        modal_id: section.id,
+                                                        xr_button: false,
+                                                        media_width: media_width,
+                                                        media_fit: section.settings.media_fit,
+                                                        constrain_to_viewport: section.settings.constrain_to_viewport
+                                                %}
+                                            </div>
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                {%- else -%}
+                                    <div class="product__media-item">
+                                        <div
+                                                class="product-media-container global-media-settings gradient{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
+                                                style="--ratio: 1.0; --preview-ratio: 1.0;"
+                                        >
+                                            {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                                        </div>
+                                    </div>
+                                {%- endif -%}
+                            </div>
+                            {%- if first_3d_model -%}
+                                <button
+                                        class="button button--full-width product__xr-button"
+                                        type="button"
+                                        aria-label="{{ 'products.product.xr_button_label' | t }}"
+                                        data-shopify-xr
+                                        data-shopify-model3d-id="{{ first_3d_model.id }}"
+                                        data-shopify-title="{{ product.title | escape }}"
+                                        data-shopify-xr-hidden
+                                >
+                                    {% render 'icon-3d-model' %}
+                                    {{ 'products.product.xr_button' | t }}
+                                </button>
+                            {%- endif -%}
+                        </media-gallery>
+                    </div>
+                {% when 'message' %}
+                    <div class="modal_message"
+                         style="background: url('{{ block.settings.background_image | img_url: 'master' }}') center/cover no-repeat">
+                        <h3>{{ block.settings.title }}</h3>
+                        <p>{{ block.settings.text }}</p>
+                        <a href="{{ block.settings.url }}"
+                           class="button button--primary">{{ block.settings.link_label }}</a>
+                    </div>
+                {% when 'image' %}
+                <div class="img_box">
+                    <img src="{{ block.settings.image | img_url: 'master' }}" alt=""/>
+                </div>
+            {% endcase %}
+        {% endfor %}
+    </div>
 </div>
 
 {% schema %}
 {
-  "name": "Modal",
-  "enabled_on": {
-    "groups": ["footer"]
-  },
-  "max_blocks": 1,
-  "settings": [
-    {
-      "type": "range",
-      "id": "modal_width",
-      "min": 200,
-      "max": 1200,
-      "step": 10,
-      "default": 800,
-      "label": "Modal width"
-    },
-        {
-      "type": "select",
-      "id": "appearance_options",
-      "options": [
-        {
-          "value": "when_load",
-          "label": "When load"
-        },
-        {
-          "value": "when_scroll",
-          "label": "When scroll to block"
-        }
-      ],
-      "default": "when_load",
-      "label": "Appearance options"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "Product",
-      "name": "Product",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        }
-      ]
-    },
-        {
-      "type": "message",
-      "name": "Message",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "background_image",
-          "label": "Background image"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "title",
-          "label": "t:sections.multicolumn.blocks.column.settings.title.label"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "t:sections.multicolumn.blocks.column.settings.text.label"
-        },
-        {
-          "type": "text",
-          "id": "link_label",
-          "label": "t:sections.multicolumn.blocks.column.settings.link_label.label"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "t:sections.multicolumn.blocks.column.settings.link.label"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Modal"
-    }
-  ]
+"name": "Modal",
+"enabled_on": {
+"groups": ["footer"]
+},
+"max_blocks": 1,
+"settings": [
+{
+"type": "range",
+"id": "modal_width",
+"min": 200,
+"max": 1200,
+"step": 10,
+"default": 800,
+"label": "Modal width"
+},
+{
+"type": "select",
+"id": "appearance_options",
+"options": [
+{
+"value": "when_load",
+"label": "When load"
+},
+{
+"value": "when_scroll",
+"label": "When scroll to block"
+}
+],
+"default": "when_load",
+"label": "Appearance options"
+}
+],
+"blocks": [
+{
+"type": "product",
+"name": "Product",
+"settings": [
+{
+"type": "product",
+"id": "product",
+"label": "Product"
+}
+]
+},
+{
+"type": "message",
+"name": "Message",
+"settings": [
+{
+"type": "image_picker",
+"id": "background_image",
+"label": "Background image"
+},
+{
+"type": "inline_richtext",
+"id": "title",
+"label": "t:sections.multicolumn.blocks.column.settings.title.label"
+},
+{
+"type": "richtext",
+"id": "text",
+"label": "t:sections.multicolumn.blocks.column.settings.text.label"
+},
+{
+"type": "text",
+"id": "link_label",
+"label": "t:sections.multicolumn.blocks.column.settings.link_label.label"
+},
+{
+"type": "url",
+"id": "link",
+"label": "t:sections.multicolumn.blocks.column.settings.link.label"
+}
+]
+},
+{
+"type": "image",
+"name": "Image",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Modal"
+}
+]
 }
 {% endschema %}
 
-
 <script>
-const modal = document.getElementById('custom_modal');
-const closeModal = modal.querySelector('.close');
+    const modal = document.querySelector('.when_load');
+    const closeModal = modal.querySelector('.close');
 
-document.addEventListener('DOMContentLoaded', () => {
-  modal.style.display = 'block';
-});
+    {% if section.settings.appearance_options == "when_load" %}
+    document.addEventListener('DOMContentLoaded', () => {
+        modal.classList.add('show');
+    });
+    {% endif %}
 
-closeModal.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
 
-window.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
-});
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+
+    {% if section.settings.appearance_options == "when_scroll" %}
+    let modalShown = false;
+    window.addEventListener('scroll', () => {
+        const scrollThreshold = 500;
+        if (!modalShown && window.scrollY >= scrollThreshold) {
+            modal.classList.add('show');
+            modalShown = true;
+        }
+    });
+    {% endif %}
 </script>
+
