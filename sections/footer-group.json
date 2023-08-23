@@ -17,7 +17,7 @@
       ],
       "settings": {
         "modal_width": 800,
-        "appearance_options": "when_load"
+        "appearance_options": "when_scroll"
       }
     },
     "footer": {
