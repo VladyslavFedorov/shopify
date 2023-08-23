@@ -42,6 +42,9 @@
     width: 100%;
     padding: 40px 20px;
   }
+  #settings_modal_width {
+  display: none;
+}
 </style>
 
 <div id="custom_modal" class="modal {% if section.settings.appearance_options == "when_load" %}when_load" {% endif %}>
@@ -275,19 +278,19 @@
 </script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const appearanceOptions = document.getElementById("settings_appearance_options");
-    const modalWidthGroup = document.getElementById("settings_modal_width").parentNode;
+$(document).ready(function() {
+  var appearanceOptions = $('#settings_appearance_options');
+  var modalWidthGroup = $('#settings_modal_width').closest('.setting-group');
 
-    function toggleModalWidth() {
-      if (appearanceOptions.value === "when_load") {
-        modalWidthGroup.style.display = "block";
-      } else {
-        modalWidthGroup.style.display = "none";
-      }
+  function toggleModalWidth() {
+    if (appearanceOptions.val() === 'when_load') {
+      modalWidthGroup.show();
+    } else {
+      modalWidthGroup.hide();
     }
+  }
 
-    appearanceOptions.addEventListener("change", toggleModalWidth);
-    toggleModalWidth(); // Визначити видимість при завантаженні сторінки
-  });
+  appearanceOptions.on('change', toggleModalWidth);
+  toggleModalWidth(); // Визначити видимість при завантаженні сторінки
+});
 </script>
