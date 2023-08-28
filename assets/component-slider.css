@@ -335,7 +335,7 @@ slider-component.slider-component-full-width {
   .product__media-wrapper .product__column-sticky {
     display: flex;
   }
-  .thumbnail-list {
+  .product--thumbnail .thumbnail-list {
     display: flex;
     flex-direction: column;
   }

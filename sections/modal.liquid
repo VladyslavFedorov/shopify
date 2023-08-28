@@ -1,56 +1,38 @@
-<style>
-  .modal {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.3s ease-in-out;
-  }
-  .modal.show {
-    opacity: 1;
-    z-index: 99;
-  }
-  .modal-content {
-    background-color: #fff;
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 10% auto;
-    border: 1px solid #fff;
-    width: 60%;
-    max-width: 100%;
-    text-align: center;
-    position: relative;
-    display: flex;
-  }
-  .close {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  .close:hover {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .modal_message {
-    width: 100%;
-    padding: 40px 20px;
-  }
-</style>
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'section-modal.css' | asset_url | stylesheet_tag }}
 
 <div id="custom_modal" class="modal {% if section.settings.appearance_options == "when_load" %}when_load" {% endif %}>
     <div class="modal-content" style="width: {{ section.settings.modal_width }}px;">
         <span class="close">&times;</span>
         {%- for block in section.blocks -%}
             {% case block.type %}
-                {% when 'product' %}
-                    <div class="grid__item product__media-wrapper">
+            {% when 'product' %}
+
+                <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+
+                {%- assign product = block.settings.product -%}
+                {%- assign product_form_id = 'product-form-' | append: section.id -%}
+                {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
+            {%- if first_3d_model -%}
+                {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
+            <link
+                    id="ModelViewerStyle"
+                    rel="stylesheet"
+                    href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+                    media="print"
+                    onload="this.media='all'"
+            >
+            <link
+                    id="ModelViewerOverride"
+                    rel="stylesheet"
+                    href="{{ 'component-model-viewer-ui.css' | asset_url }}"
+                    media="print"
+                    onload="this.media='all'"
+            >
+            {%- endif -%}
+
+                <div class="product grid grid--1-col grid--2-col-tablet">
+                    <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
                         <media-gallery
                                 id="MediaGallery-{{ section.id }}"
                                 role="region"
@@ -61,10 +43,11 @@
                                     id="GalleryViewer-{{ section.id }}"
                                     class="product__media-list{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
                             >
-                                {%- if section.settings.product != blank -%}
+                                {%- if block.settings.product != blank -%}
                                     {%- if product.selected_or_first_available_variant.featured_media != null -%}
                                         {%- assign media = product.selected_or_first_available_variant.featured_media -%}
-                                        <div class="product__media-item" data-media-id="{{ section.id }}-{{ media.id }}">
+                                        <div class="product__media-item"
+                                             data-media-id="{{ section.id }}-{{ media.id }}">
                                             {% render 'product-thumbnail',
                                                     media: media,
                                                     position: 'featured',
@@ -87,7 +70,8 @@
                                         {%- if media_to_render contains media.id
                                         and media.id != product.selected_or_first_available_variant.featured_media.id
                                         -%}
-                                            <div class="product__media-item" data-media-id="{{ section.id }}-{{ media.id }}">
+                                            <div class="product__media-item"
+                                                 data-media-id="{{ section.id }}-{{ media.id }}">
                                                 {% render 'product-thumbnail',
                                                         media: media,
                                                         position: forloop.index,
@@ -127,29 +111,184 @@
                                 </button>
                             {%- endif -%}
                         </media-gallery>
+
+                        {% render 'product-media-modal', product: product, variant_images: media_to_render %}
+
+                        {%- if first_3d_model -%}
+                            <script type="application/json"
+                                    id="ProductJSON-{{ product.id }}">{{ product.media | where: 'media_type', 'model' | json }}</script>
+                            <script src="{{ 'product-model.js' | asset_url }}" defer></script>
+                        {%- endif -%}
+
+                        {% if product.media.size > 0 %}
+                            <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
+                            <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+                        {% endif %}
                     </div>
-                {% when 'message' %}
-                    <div class="modal_message"
-                         style="background: url('{{ block.settings.background_image | img_url: 'master' }}') center/cover no-repeat">
+                    <div class="product__info-wrapper grid__item scroll-trigger animate--slide-in">
+
+                        <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                            {%- if product.title != blank -%}
+                                {{ product.title | escape }}
+                            {%- else -%}
+                                {{ 'onboarding.product_title' | t }}
+                            {%- endif -%}
+                        </h2>
+
+                        <div class="no-js-hidden" id="price-{{ section.id }}"
+                             role="status" {{ block.shopify_attributes }}>
+                            {%- render 'price',
+                                    product: product,
+                                    use_variant: true,
+                                    show_badges: false,
+                                    price_class: 'price--large'
+                            -%}
+                        </div>
+
+                        <variant-radios
+                                id="variant-radios-{{ section.id }}"
+                                class="no-js-hidden"
+                                data-section="{{ section.id }}"
+                                data-url="{{ product.url }}"
+                                {% if update_url == false %}
+                                    data-update-url="false"
+                                {% endif %}
+                                {{ block.shopify_attributes }}
+                        >
+                            {%- for option in product.options_with_values -%}
+                                <fieldset class="js product-form__input">
+                                    <legend class="form__label">{{ option.name }}</legend>
+                                    {% for value in option.values %}
+                                        {%- assign variant = product.variants | where: 'option1', value | first -%}
+                                        <input
+                                                type="radio"
+                                                id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                                                name="{{ option.name }}"
+                                                value="{{ value | escape }}"
+                                                data-inventory-quantity="{{ variant.inventory_quantity }}"
+                                                form="{{ product_form_id }}"
+                                                {% if option.selected_value == value %}
+                                                    checked
+                                                {% endif %}
+                                                {% if option_disabled %}
+                                                    class="disabled"
+                                                {% endif %}
+                                        >
+                                        <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                                            {{ value -}}
+                                            <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+                                        </label>
+                                    {%- endfor -%}
+                                </fieldset>
+                            {%- endfor -%}
+                            <script type="application/json">{{ product.variants | json }}</script>
+                        </variant-radios>
+
+                        {%- render 'buy-buttons',
+                                block: block,
+                                product: product,
+                                product_form_id: product_form_id,
+                                section_id: section.id
+                        -%}
+
+                        <a
+                                {% if product == blank %}
+                                    role="link" aria-disabled="true"
+                                {% else %}
+                                    href="{{ product.url }}"
+                                {% endif %}
+                                class="link animate-arrow show_more"
+                        >
+                            {{ 'products.product.view_full_details' | t }}
+                            {% render 'icon-arrow' %}
+                        </a>
+                    </div>
+                </div>
+
+            {% when 'message' %}
+                <div class="modal_message"
+                     style="background: url('{{ block.settings.background_image | img_url: 'master' }}') center/cover no-repeat">
+                    {% if block.settings.title != blank %}
                         <h3>{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
                         <p>{{ block.settings.text }}</p>
+                    {% endif %}
+                    {% if block.settings.url != blank %}
                         <a href="{{ block.settings.url }}"
                            class="button button--primary">{{ block.settings.link_label }}</a>
-                    </div>
-                {% when 'image' %}
+                    {% endif %}
+                </div>
+            {% when 'image' %}
+            {% if block.settings.image != blank %}
                 <div class="img_box">
                     <img src="{{ block.settings.image | img_url: 'master' }}" alt=""/>
                 </div>
+            {% endif %}
             {% endcase %}
         {% endfor %}
     </div>
 </div>
 
+<script>
+    const modal = document.querySelector('.when_load');
+    const body = document.querySelector('body');
+    const closeModal = modal.querySelector('.close');
+    const showModalKey = 'showModal';
+
+    // if (!sessionStorage.getItem(showModalKey)) {
+
+    {% if section.settings.appearance_options == "when_load" %}
+    document.addEventListener('DOMContentLoaded', () => {
+        modal.classList.add('show');
+        body.classList.add('overflow-hidden');
+    });
+    {% endif %}
+
+    {% if section.settings.appearance_options == "when_scroll" %}
+    // let modalShown = false;
+    // window.addEventListener('scroll', () => {
+    //     const scrollThreshold = 500;
+    //     if (!modalShown && window.scrollY >= scrollThreshold) {
+    //         modal.classList.add('show');
+    //         body.classList.add('overflow-hidden');
+    //         modalShown = true;
+    //     }
+    // });
+
+    let modalShown = false;
+    window.addEventListener('scroll', function() {
+        if (modal) {
+            modal.classList.add('show');
+            body.classList.add('overflow-hidden');
+            modalShown = true;
+            window.removeEventListener('scroll', arguments.callee);
+        }
+    });
+    {% endif %}
+
+    sessionStorage.setItem(showModalKey, 'true');
+    // }
+
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('show');
+        body.classList.remove('overflow-hidden');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('show');
+            body.classList.remove('overflow-hidden');
+        }
+    });
+
+</script>
+
 {% schema %}
 {
 "name": "Modal",
-"enabled_on": {
-"groups": ["footer"]
+"disabled_on": {
+"groups": ["header", "footer"]
 },
 "max_blocks": 1,
 "settings": [
@@ -242,34 +381,3 @@
 }
 {% endschema %}
 
-<script>
-    const modal = document.querySelector('.when_load');
-    const closeModal = modal.querySelector('.close');
-
-    {% if section.settings.appearance_options == "when_load" %}
-    document.addEventListener('DOMContentLoaded', () => {
-        modal.classList.add('show');
-    });
-    {% endif %}
-
-    closeModal.addEventListener('click', () => {
-        modal.classList.remove('show');
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.classList.remove('show');
-        }
-    });
-
-    {% if section.settings.appearance_options == "when_scroll" %}
-    let modalShown = false;
-    window.addEventListener('scroll', () => {
-        const scrollThreshold = 500;
-        if (!modalShown && window.scrollY >= scrollThreshold) {
-            modal.classList.add('show');
-            modalShown = true;
-        }
-    });
-    {% endif %}
-</script>

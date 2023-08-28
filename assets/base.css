@@ -90,6 +90,7 @@ html.no-js .no-js-hidden {
   max-width: var(--page-width);
   margin: 0 auto;
   padding: 0 20px;
+  z-index: 2;
 }
 body:has(.section-header .drawer-menu) .announcement-bar-section slideshow-component {
   max-width: 100%;
@@ -2014,6 +2015,7 @@ product-info .loading-overlay:not(.hidden) ~ *,
 .header__icon--cart span {
   text-decoration: none;
   margin-left: 10px;
+  padding-top: 6px;
 }
 .header__icon--menu[aria-expanded='true']::before {
   content: '';

@@ -1,63 +1,65 @@
+<div class="page-width">
 
+</div>
 
 
 
 {% schema %}
-  {
-    "name": "Shoppable image",
-    "settings": [
-            {
+{
+"name": "Shoppable image",
+"settings": [
+{
 "id": "title",
 "type": "text",
 "label": "Title"
 },
-                  {
+{
 "id": "image",
 "type": "image_picker",
 "label": "Image"
 }
-    ],
-    "blocks": [
-          {
-      "type": "column",
-      "name": "Hotspot",
-      "limit": 3,
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        },
-    {
-      "type": "range",
-      "id": "horizontal_position",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "%",
-      "label": "Horizontal position",
-      "default": 0
-    },
-            {
-      "type": "range",
-      "id": "vertical_position",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "unit": "%",
-      "label": "Vertical position",
-      "default": 0
-    }
-      ]
-    }
-    ],
-        "presets": [
+],
+"blocks": [
+{
+"type": "column",
+"name": "Hotspot",
+"limit": 3,
+"settings": [
+{
+"type": "product",
+"id": "product",
+"label": "Product"
+},
+{
+"type": "range",
+"id": "horizontal_position",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "%",
+"label": "Horizontal position",
+"default": 0
+},
+{
+"type": "range",
+"id": "vertical_position",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "%",
+"label": "Vertical position",
+"default": 0
+}
+]
+}
+],
+"presets": [
 {
 "name": "Shoppable image",
 "category": "Custom"
 }
 ]
-  }
+}
 {% endschema %}
 
 {% stylesheet %}

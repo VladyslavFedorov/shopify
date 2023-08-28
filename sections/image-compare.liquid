@@ -3,61 +3,55 @@
 <script src="{{ 'image-compare-viewer.min.js' | asset_url }}"></script>
 
 
-
-    <div class="page-width" id="image-compare">
-      <div class="image-compare">
-        <img
-          src="{{ section.settings.before_image |img_url: '1200x' }}"
-          alt="after"
-        />
-        <img
-          src="{{ section.settings.after_image |img_url: '1200x' }}"
-          alt="before"
-        />
-      </div>
+<div class="page-width">
+    <div class="image-compare" id="image-compare">
+        <img src="{{ section.settings.before_image | img_url: '1200x' }}" alt="after"/>
+        <img src="{{ section.settings.after_image | img_url: '1200x' }}" alt="before"/>
     </div>
+</div>
 
-        <script>
+<script>
 
-      const element = document.getElementById("image-compare");
+    const element = document.getElementById("image-compare");
 
-      const viewer = new ImageCompare(element,{
+    const viewer = new ImageCompare(element, {
         addCircle: true,
         startingPoint: 75,
         smoothing: true,
         smoothingAmount: 100,
         addCircleBlur: true,
         // hoverStart: true,
-      }).mount();
+    }).mount();
 
-    </script>
+</script>
+
 {% schema %}
-  {
-    "name": "Image compare",
-    "settings": [
-      {
+{
+"name": "Image compare",
+"settings": [
+{
 "id": "title",
 "type": "text",
 "label": "Title"
 },
-            {
+{
 "id": "before_image",
 "type": "image_picker",
 "label": "Before Image"
 },
-            {
+{
 "id": "after_image",
 "type": "image_picker",
 "label": "After Image"
 }
-    ],
-    "presets": [
+],
+"presets": [
 {
 "name": "Image compare",
 "category": "Custom"
 }
 ]
-  }
+}
 {% endschema %}
 
 {% stylesheet %}
