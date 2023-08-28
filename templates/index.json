@@ -132,6 +132,24 @@
         "padding_bottom": 100
       }
     },
+    "6832ef8f-27bb-4e70-a4ed-a28a2eac590e": {
+      "type": "modal",
+      "blocks": {
+        "e6695458-02b4-444e-88f0-a9e92db071ef": {
+          "type": "product",
+          "settings": {
+            "product": "mouse-pillow"
+          }
+        }
+      },
+      "block_order": [
+        "e6695458-02b4-444e-88f0-a9e92db071ef"
+      ],
+      "settings": {
+        "modal_width": 800,
+        "appearance_options": "when_scroll"
+      }
+    },
     "4a2fffe4-a989-4e97-b8af-5f68eef35a6a": {
       "type": "featured-collection",
       "settings": {
@@ -235,6 +253,7 @@
     "image_banner",
     "featured_collection",
     "94afd740-7564-44b4-9ccb-181299c8b8f9",
+    "6832ef8f-27bb-4e70-a4ed-a28a2eac590e",
     "4a2fffe4-a989-4e97-b8af-5f68eef35a6a",
     "6eaada75-ffa2-4582-917f-41da1a2c25a7"
   ]
