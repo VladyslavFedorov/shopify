@@ -1,3 +1,6 @@
+body.modal_show {
+ overflow: hidden;
+}
 .modal {
   position: fixed;
   left: 0;
