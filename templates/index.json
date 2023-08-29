@@ -178,6 +178,13 @@
         "padding_top": 40,
         "padding_bottom": 32
       }
+    },
+    "0a6f38df-a70d-4a68-baeb-7d65fa5b8ce6": {
+      "type": "collection-list-pagination",
+      "settings": {
+        "collection": "new",
+        "products_per_page": 4
+      }
     }
   },
   "order": [
@@ -185,6 +192,7 @@
     "featured_collection",
     "94afd740-7564-44b4-9ccb-181299c8b8f9",
     "6832ef8f-27bb-4e70-a4ed-a28a2eac590e",
-    "4a2fffe4-a989-4e97-b8af-5f68eef35a6a"
+    "4a2fffe4-a989-4e97-b8af-5f68eef35a6a",
+    "0a6f38df-a70d-4a68-baeb-7d65fa5b8ce6"
   ]
 }
