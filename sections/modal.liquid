@@ -239,7 +239,7 @@
     const closeModal = modal.querySelector('.modal .close');
     const showModalKey = 'showModal';
 
-    // if (!sessionStorage.getItem(showModalKey)) {
+    if (!sessionStorage.getItem(showModalKey)) {
 
     {% if section.settings.appearance_options == "when_load" %}
     document.addEventListener('DOMContentLoaded', () => {
@@ -268,7 +268,7 @@
 
     sessionStorage.setItem(showModalKey, 'true');
 
-    // }
+    }
 
     closeModal.addEventListener('click', () => {
         modal.classList.remove('show');
