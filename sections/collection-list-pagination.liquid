@@ -1,58 +1,104 @@
-<div id="products-list">
+<style>
+  .collection-list-pagination .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .collection-list-pagination .pagination > li {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+  }
+  .collection-list-pagination .pagination > li:hover,
+  .collection-list-pagination .pagination > li.active {
+    border-color: #000;
+  }
+  .collection-list-pagination .pagination > li:not(:last-child) {
+    margin-right: 5px;
+  }
+  .products-list {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+<div class="page-width collection-list-pagination">
+    <h2>{{ section.settings.heading }}</h2>
+    <div class="products-list" id="products-list">
 
-</div>
-<div id="pagination">
+    </div>
+    <ul class="pagination" id="pagination">
 
+    </ul>
 </div>
+
 
 <script>
-  let currentPage = 1;
-  let productsPerPage = 4;
+    let currentPage = 1;
+    let collectionData = {
+        collection: '{{ section.settings.collection.handle }}',
+        productsPerPage: '{{ section.settings.products_per_page }}',
+        products_count: '{{ collections[section.settings.collection.handle].products_count }}'
+    }
 
-  function loadProducts(page) {
-    let request = new XMLHttpRequest();
-    request.open('GET', '/collections/new/products.json?page=' + page + '&limit=' + productsPerPage, true);
+    function loadProducts(page) {
+        let request = new XMLHttpRequest();
+        request.open('GET', '/collections/' + collectionData.collection + '/products.json?page=' + page + '&limit=' + collectionData.productsPerPage, true);
 
-    request.onload = function() {
-      if (request.status >= 200 && request.status < 400) {
-        let data = JSON.parse(request.responseText);
-        let products = data.products;
-        let totalCount = {
-          products_count: {{ collections[section.settings.collection.handle].products_count }}
+        request.onload = function () {
+            if (request.status >= 200 && request.status < 400) {
+                let data = JSON.parse(request.responseText);
+                let products = data.products;
+                let totalPages = Math.ceil(collectionData.products_count / collectionData.productsPerPage);
+
+                let productsList = document.getElementById('products-list');
+                productsList.innerHTML = '';
+                products.forEach(function(product) {
+                    var productHTML = '<div class="product">';
+                    productHTML += '<img src="' + product.images[0].src + '" alt="' + product.title + '">';
+                    productHTML += '<h2>' + product.title + '</h2>';
+                    productHTML += '<p>Price: ' + formatPrice(product.variants[0].price) + '</p>';
+                    if (product.variants[0].compare_at_price) {
+                        productHTML += '<p>Regular Price: ' + formatPrice(product.variants[0].compare_at_price) + '</p>';
+                    }
+                    productHTML += '<a href="/products/' + product.handle + '">View Product</a>';
+                    productHTML += '</div>';
+                    productsList.innerHTML += productHTML;
+                });
+
+                let pagination = document.getElementById('pagination');
+                pagination.innerHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    let activeClass = (i === page) ? 'active' : '';
+                    pagination.innerHTML += '<li class="page-link ' + activeClass + '" onclick="changePage(' + i + ')">' + i + '</li>';
+                }
+            } else {
+                console.error('onload error');
+            }
         };
-        let totalPages = Math.ceil(totalCount.products_count / productsPerPage);
-        console.log(totalCount);
 
-        let productsList = document.getElementById('products-list');
-        productsList.innerHTML = '';
-        products.forEach(function(product) {
-          productsList.innerHTML += '<div class="product">' + product.title + '</div>';
-        });
+        request.onerror = function () {
+            console.error('request error');
+        };
 
-        let pagination = document.getElementById('pagination');
-        pagination.innerHTML = '';
-        for (let i = 1; i <= totalPages; i++) {
-          let activeClass = (i === page) ? 'active' : '';
-          pagination.innerHTML += '<a class="page-link ' + activeClass + '" onclick="changePage(' + i + ')">' + i + '</a>';
-        }
-      } else {
-        console.error('onload error');
-      }
-    };
+        request.send();
+    }
 
-    request.onerror = function() {
-      console.error('request error');
-    };
+    function changePage(page) {
+        currentPage = page;
+        loadProducts(currentPage);
+    }
 
-    request.send();
-  }
+    function formatPrice(price) {
+        let currency = '{{ shop.currency | money  }}';
+        return currency + ' ' + price;
+    }
 
-  function changePage(page) {
-    currentPage = page;
     loadProducts(currentPage);
-  }
-
-  loadProducts(currentPage);
 </script>
 
 {% schema %}
@@ -62,6 +108,11 @@
 "groups": ["header", "footer"]
 },
 "settings": [
+{
+"type": "inline_richtext",
+"id": "heading",
+"label": "Heading"
+},
 {
 "type": "collection",
 "id": "collection",
