@@ -1,12 +1,86 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<div id="products-list">
+
+</div>
+<div id="pagination">
+
+</div>
+
+<script>
+  let currentPage = 1;
+  let productsPerPage = 4;
+
+  function loadProducts(page) {
+    let request = new XMLHttpRequest();
+    request.open('GET', '/collections/new/products.json?page=' + page + '&limit=' + productsPerPage, true);
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        let data = JSON.parse(request.responseText);
+        let products = data.products;
+        let totalCount = {
+          products_count: {{ collections[section.settings.collection.handle].products_count }}
+        };
+        let totalPages = Math.ceil(totalCount.products_count / productsPerPage);
+        console.log(totalCount);
+
+        let productsList = document.getElementById('products-list');
+        productsList.innerHTML = '';
+        products.forEach(function(product) {
+          productsList.innerHTML += '<div class="product">' + product.title + '</div>';
+        });
+
+        let pagination = document.getElementById('pagination');
+        pagination.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+          let activeClass = (i === page) ? 'active' : '';
+          pagination.innerHTML += '<a class="page-link ' + activeClass + '" onclick="changePage(' + i + ')">' + i + '</a>';
+        }
+      } else {
+        console.error('onload error');
+      }
+    };
+
+    request.onerror = function() {
+      console.error('request error');
+    };
+
+    request.send();
   }
+
+  function changePage(page) {
+    currentPage = page;
+    loadProducts(currentPage);
+  }
+
+  loadProducts(currentPage);
+</script>
+
+{% schema %}
+{
+"name": "Collect list pagination",
+"disabled_on": {
+"groups": ["header", "footer"]
+},
+"settings": [
+{
+"type": "collection",
+"id": "collection",
+"label": "Collection"
+},
+{
+"type": "range",
+"id": "products_per_page",
+"min": 2,
+"max": 4,
+"step": 1,
+"default": 4,
+"label": "Products Per Page"
+}
+],
+"presets": [
+{
+"name": "Collect list pagination"
+}
+]
+}
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
