@@ -182,6 +182,7 @@
     "0a6f38df-a70d-4a68-baeb-7d65fa5b8ce6": {
       "type": "collection-list-pagination",
       "settings": {
+        "heading": "YOU MAY ALSO LIKE",
         "collection": "new",
         "products_per_page": 4
       }
