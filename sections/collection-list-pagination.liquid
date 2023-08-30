@@ -1,12 +1,15 @@
 <style>
+  .collection-list-pagination .pagination_list,
   .collection-list-pagination .pagination {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
   }
+  .collection-list-pagination .pagination_list > span,
   .collection-list-pagination .pagination > li {
     cursor: pointer;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -14,6 +17,16 @@
     border-bottom: 1px solid transparent;
     transition: 0.3s;
   }
+  .collection-list-pagination .pagination_list > span {
+    z-index: -1;
+    opacity: 0;
+    position: relative;
+  }
+  .collection-list-pagination .pagination_list > span.active {
+    opacity: 1;
+    z-index: 9;
+  }
+  .collection-list-pagination .pagination_list > span:hover,
   .collection-list-pagination .pagination > li:hover,
   .collection-list-pagination .pagination > li.active {
     border-color: #000;
@@ -21,23 +34,41 @@
   .collection-list-pagination .pagination > li:not(:last-child) {
     margin-right: 5px;
   }
-  .products-list {
+  .collection-list-pagination .products-list {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .collection-list-pagination .card__media {
+    width: 100%;
+  }
+  .collection-list-pagination .price {
+    margin-top: 0.7rem;
+  }
+  .collection-list-pagination .price > span {
+    margin-right: 5px;
   }
 </style>
+
 <div class="page-width collection-list-pagination">
+
     <h2>{{ section.settings.heading }}</h2>
-    <div class="products-list" id="products-list">
+    <div class="products-list grid--{{ section.settings.products_per_page }}-col-desktop grid--2-col-tablet-down"
+         id="products-list">
 
     </div>
-    <ul class="pagination" id="pagination">
+    <div class="pagination_list">
+        <span id="next-button">&#60;</span>
+        <ul class="pagination" id="pagination">
 
-    </ul>
+        </ul>
+        <span id="prev-button">&#62;</span>
+    </div>
 </div>
 
 
 <script>
+
     let currentPage = 1;
     let collectionData = {
         collection: '{{ section.settings.collection.handle }}',
@@ -57,18 +88,58 @@
 
                 let productsList = document.getElementById('products-list');
                 productsList.innerHTML = '';
-                products.forEach(function(product) {
-                    var productHTML = '<div class="product">';
+                products.forEach(function (product) {
+                    let productHTML = '<div class="product card-wrapper grid__item scroll-trigger animate--slide-in"><a class="card" href="/products/' + product.handle + '">';
+                    productHTML += '<div class="card__inner ratio" style="--ratio-percent: 125%;"><div class="card__media">';
+                    productHTML += '<div class="media media--transparent media--hover-effect">';
                     productHTML += '<img src="' + product.images[0].src + '" alt="' + product.title + '">';
-                    productHTML += '<h2>' + product.title + '</h2>';
-                    productHTML += '<p>Price: ' + formatPrice(product.variants[0].price) + '</p>';
-                    if (product.variants[0].compare_at_price) {
-                        productHTML += '<p>Regular Price: ' + formatPrice(product.variants[0].compare_at_price) + '</p>';
+                    if (product.images[1]) {
+                        productHTML += '<img src="' + product.images[1].src + '" alt="' + product.title + '">';
                     }
-                    productHTML += '<a href="/products/' + product.handle + '">View Product</a>';
-                    productHTML += '</div>';
+                    productHTML += '</div></div></div>';
+                    productHTML += '<div class="card__information">';
+                    productHTML += '<h3 class="card__heading h5">' + product.title + '</h3>';
+                    //productHTML += '<p>' + product.body_html + '</p>';
+                    productHTML += '<div class="price price--on-sale">';
+                    productHTML += '<span>' + formatPrice(product.variants[0].price) + '</span>';
+                    if (product.variants[0].compare_at_price) {
+                        productHTML += '<s class="price-item--regular"> ' + formatPrice(product.variants[0].compare_at_price) + '</s>';
+                    }
+                    productHTML += '</div></div>';
+                    productHTML += '</a></div>';
                     productsList.innerHTML += productHTML;
                 });
+
+                let prevButton = document.getElementById('prev-button');
+                let nextButton = document.getElementById('next-button');
+
+                prevButton.addEventListener('click', function () {
+                    if (currentPage > 1) {
+                        changePage(currentPage - 1);
+                    }
+                });
+
+                nextButton.addEventListener('click', function () {
+                    if (currentPage < totalPages) {
+                        changePage(currentPage + 1);
+                    }
+                });
+
+                function updatePaginationButtons() {
+                    if (currentPage === 1) {
+                        prevButton.classList.remove('active');
+                    } else {
+                        prevButton.classList.add('active');
+                    }
+
+                    if (currentPage === totalPages) {
+                        nextButton.classList.remove('active');
+                    } else {
+                        nextButton.classList.add('active');
+                    }
+                }
+
+                updatePaginationButtons();
 
                 let pagination = document.getElementById('pagination');
                 pagination.innerHTML = '';
@@ -94,8 +165,8 @@
     }
 
     function formatPrice(price) {
-        let currency = '{{ shop.currency | money  }}';
-        return currency + ' ' + price;
+        let currency = '{{ shop.currency | money | remove: '0.00' | strip }}';
+        return currency + '' + price;
     }
 
     loadProducts(currentPage);
