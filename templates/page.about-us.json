@@ -18,7 +18,8 @@
     "93c48d98-7f36-4de3-8888-18d3e6e06f33": {
       "type": "shoppable-image",
       "settings": {
-        "title": ""
+        "title": "Shoppable image",
+        "image": "shopify:\/\/shop_images\/nursery-interior-design.jpg"
       }
     }
   },
