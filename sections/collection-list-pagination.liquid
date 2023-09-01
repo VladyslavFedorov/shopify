@@ -36,7 +36,6 @@
   }
   .collection-list-pagination .products-list {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
   }
   .collection-list-pagination .card__media {
@@ -51,18 +50,17 @@
 </style>
 
 <div class="page-width collection-list-pagination">
-
     <h2>{{ section.settings.heading }}</h2>
-    <div class="products-list grid--{{ section.settings.products_per_page }}-col-desktop grid--2-col-tablet-down"
+    <div class="products-list grid grid--{{ section.settings.products_per_page }}-col-desktop grid--2-col-tablet-down"
          id="products-list">
 
     </div>
     <div class="pagination_list">
-        <span id="next-button">&#60;</span>
+        <span id="prev-button">&#60;</span>
         <ul class="pagination" id="pagination">
 
         </ul>
-        <span id="prev-button">&#62;</span>
+        <span id="next-button">&#62;</span>
     </div>
 </div>
 
