@@ -10,14 +10,21 @@
     "9952b8c5-4250-4dec-b8a1-5b3a58a246b4": {
       "type": "image-compare",
       "settings": {
-        "title": "",
+        "title": "Image compare",
         "before_image": "shopify:\/\/shop_images\/before-cgi.jpg",
         "after_image": "shopify:\/\/shop_images\/after-cgi.jpg"
+      }
+    },
+    "93c48d98-7f36-4de3-8888-18d3e6e06f33": {
+      "type": "shoppable-image",
+      "settings": {
+        "title": ""
       }
     }
   },
   "order": [
     "main",
-    "9952b8c5-4250-4dec-b8a1-5b3a58a246b4"
+    "9952b8c5-4250-4dec-b8a1-5b3a58a246b4",
+    "93c48d98-7f36-4de3-8888-18d3e6e06f33"
   ]
 }
