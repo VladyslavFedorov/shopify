@@ -50,6 +50,15 @@
           "type": "description",
           "settings": {
           }
+        },
+        "f3a80fdf-c1be-43fd-9893-e33484e8fa55": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Collapsible row",
+            "icon": "none",
+            "content": "<p>павпва авпвапва<\/p>",
+            "page": ""
+          }
         }
       },
       "block_order": [
@@ -60,7 +69,8 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description"
+        "description",
+        "f3a80fdf-c1be-43fd-9893-e33484e8fa55"
       ],
       "settings": {
         "enable_sticky_info": true,

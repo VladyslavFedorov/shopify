@@ -18,26 +18,17 @@
     "93c48d98-7f36-4de3-8888-18d3e6e06f33": {
       "type": "shoppable-image",
       "blocks": {
-        "65ed3f8d-0875-4b43-9f2c-cfc5742b1ee1": {
-          "type": "column",
+        "03c5bb81-5822-4181-95af-700e84cc9e7e": {
+          "type": "hotspot",
           "settings": {
             "product": "bear-pillow",
-            "horizontal_position": 10,
-            "vertical_position": 26
-          }
-        },
-        "955115ce-63ad-4177-85ff-0387db0922c7": {
-          "type": "column",
-          "settings": {
-            "product": "wolf-pillow",
-            "horizontal_position": 60,
-            "vertical_position": 58
+            "horizontal_position": 8,
+            "vertical_position": 12
           }
         }
       },
       "block_order": [
-        "65ed3f8d-0875-4b43-9f2c-cfc5742b1ee1",
-        "955115ce-63ad-4177-85ff-0387db0922c7"
+        "03c5bb81-5822-4181-95af-700e84cc9e7e"
       ],
       "settings": {
         "title": "Shoppable image",
