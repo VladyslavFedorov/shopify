@@ -25,10 +25,19 @@
             "horizontal_position": 8,
             "vertical_position": 12
           }
+        },
+        "de34c882-f0fb-483f-9380-1f769b2e8273": {
+          "type": "hotspot",
+          "settings": {
+            "product": "wolf-pillow",
+            "horizontal_position": 64,
+            "vertical_position": 48
+          }
         }
       },
       "block_order": [
-        "03c5bb81-5822-4181-95af-700e84cc9e7e"
+        "03c5bb81-5822-4181-95af-700e84cc9e7e",
+        "de34c882-f0fb-483f-9380-1f769b2e8273"
       ],
       "settings": {
         "title": "Shoppable image",
